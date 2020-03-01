@@ -53,11 +53,12 @@ channels.each do |ch|
     page.items.each do |el|
       if el.snippet.published_at > DateTime.now - ARGV[0].to_i
        videos << "https://youtube.com/watch?v="+el.id.video_id
-      end  
+      end 
     end
     token = page.next_page_token
   end
-  puts "Channel #{ch} has got #{page.items.count} videos"
+  puts "Channel #{ch} has got #{page.page_info.total_results} videos"
 end
 
 puts "Video links not older than #{ARGV[0]} day(s): "+videos.to_s
+
